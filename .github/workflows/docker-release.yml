@@ -39,7 +39,7 @@ jobs:
       - name: Build and push server
         uses: docker/build-push-action@v5
         with:
-          context: image/seafile_11.0
+          file: image/seafile_11.0/Dockerfile
           build-args: |
             "SEAFILE_VERSION=${{ github.event.inputs.version }}"
           push: true

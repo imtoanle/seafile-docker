@@ -34,9 +34,9 @@ RUN pip3 install --timeout=3600 click termcolor colorlog pymysql django==3.2.* \
     -i https://pypi.tuna.tsinghua.edu.cn/simple/ && rm -r /root/.cache/pip
 
 # Scripts
-COPY ../../scripts_11.0 /scripts
-COPY ../../templates /templates
-COPY ../../services /services
+COPY scripts_11.0 /scripts
+COPY templates /templates
+COPY services /services
 
 # acme
 # RUN curl https://get.acme.sh | sh -s
@@ -63,7 +63,7 @@ RUN mkdir -p /opt/seafile/ && cd /opt/seafile/ && \
     tar -zxvf seafile-server_${SEAFILE_VERSION}_x86-64.tar.gz && \
     rm -f seafile-server_${SEAFILE_VERSION}_x86-64.tar.gz
 
-RUN cp /scripts/custom/seafile.sh /opt/seafile/seafile-server-latest/seafile.sh
+COPY /custom/server/seafile.sh /opt/seafile/seafile-server-latest/seafile.sh
 
 EXPOSE 80 8000 8082 8083 8080
 

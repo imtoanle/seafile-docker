@@ -63,7 +63,7 @@ RUN mkdir -p /opt/seafile/ && cd /opt/seafile/ && \
     tar -zxvf seafile-server_${SEAFILE_VERSION}_x86-64.tar.gz && \
     rm -f seafile-server_${SEAFILE_VERSION}_x86-64.tar.gz
 
-COPY /custom/server/seafile.sh /opt/seafile/seafile-server-latest/seafile.sh
+COPY /custom/server/seafile.sh /opt/seafile/seafile-server-${SEAFILE_VERSION}/seafile.sh
 
 EXPOSE 80 8000 8082 8083 8080
 

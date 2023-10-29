@@ -43,7 +43,7 @@ RUN mkdir -p /etc/ldap/ && echo "TLS_REQCERT     allow" >> /etc/ldap/ldap.conf &
     chmod u+x /scripts/* && rm /scripts/cluster* && \
     mkdir -p /etc/my_init.d && \
     rm -f /etc/my_init.d/* && \
-    cp /scripts/create_data_links.sh /etc/my_init.d/01_create_data_links.sh && \
+    cp /scripts/create_data_links.sh /etc/my_init.d/01_create_data_links.sh
 
 # Seafile
 WORKDIR /opt/seafile

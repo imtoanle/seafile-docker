@@ -1,6 +1,8 @@
 # See https://hub.docker.com/r/phusion/baseimage/tags/
 FROM phusion/baseimage:jammy-1.0.1
-ENV SEAFILE_SERVER=seafile-server SEAFILE_VERSION=
+ARG SEAFILE_VERSION
+ENV SEAFILE_VERSION=${SEAFILE_VERSION}
+ENV SEAFILE_SERVER=seafile-server
 
 RUN echo "deb http://nginx.org/packages/ubuntu `lsb_release -cs` nginx" \
     | tee /etc/apt/sources.list.d/nginx.list \
@@ -57,10 +59,12 @@ RUN mkdir -p /etc/ldap/ && echo "TLS_REQCERT     allow" >> /etc/ldap/ldap.conf &
 WORKDIR /opt/seafile
 
 RUN mkdir -p /opt/seafile/ && cd /opt/seafile/ && \
-    wget https://seafile-downloads.oss-cn-shanghai.aliyuncs.com/seafile-server_${SEAFILE_VERSION}_x86-64.tar.gz && \
+    wget https://download.seadrive.org/seafile-server_${SEAFILE_VERSION}_x86-64.tar.gz && \
     tar -zxvf seafile-server_${SEAFILE_VERSION}_x86-64.tar.gz && \
     rm -f seafile-server_${SEAFILE_VERSION}_x86-64.tar.gz
 
-EXPOSE 80
+COPY custom/server/seafile.sh /opt/seafile/seafile-server-latest/seafile.sh
+
+EXPOSE 80 8000 8082 8083 8080
 
 CMD ["/sbin/my_init", "--", "/scripts/enterpoint.sh"]

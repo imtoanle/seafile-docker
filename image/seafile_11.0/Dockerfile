@@ -34,9 +34,9 @@ RUN pip3 install --timeout=3600 click termcolor colorlog pymysql django==3.2.* \
     -i https://pypi.tuna.tsinghua.edu.cn/simple/ && rm -r /root/.cache/pip
 
 # Scripts
-COPY scripts_11.0 /scripts
-COPY templates /templates
-COPY services /services
+COPY ../../scripts_11.0 /scripts
+COPY ../../templates /templates
+COPY ../../services /services
 
 # acme
 # RUN curl https://get.acme.sh | sh -s
